@@ -1,7 +1,24 @@
-import { ThemeButton } from "../components/";
-import { QuizCard } from "../components/QuizCard";
+import { useEffect, useState } from "react";
+import { ThemeButton, QuizzesList } from "../components/";
 
 export const HomePage = () => {
+  const [quizzes, setQuizzes] = useState([]);
+
+  useEffect(() => {
+    const getDefaultQuizzes = async () => {
+      try {
+        const url = "http://localhost:3000/api/quizzes/";
+        const response = await fetch(url);
+        const data = await response.json();
+        setQuizzes(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getDefaultQuizzes();
+  }, []);
+
   return (
     <>
       <header className="">
@@ -17,21 +34,15 @@ export const HomePage = () => {
           <div className="grid gap-5 my-10 md:grid-cols-2">
             {/* Welcome */}
             <div className="space-y-5">
-              <h1 className="text-4xl text-balance">Welcome to the QuizzApp</h1>
-              <p className="text-slate-500 dark:text-slate-400">
+              <h1 className="text-5xl font-black text-purple-700 dark:text-purple-100 text-balance">
+                Welcome to the QuizzApp
+              </h1>
+              <p className="text-xl text-slate-500 dark:text-slate-300">
                 Pick a subject to get started!
               </p>
             </div>
 
-            {/* List Quizzes */}
-            <div className="grid gap-4">
-              <QuizCard iconURL="/src/assets/html.svg" name="HTML" />
-              <QuizCard iconURL="/src/assets/css.svg" name="CSS" />
-              <QuizCard
-                iconURL="/src/assets/javascript.svg"
-                name="javascript"
-              />
-            </div>
+            <QuizzesList quizzes={quizzes} />
           </div>
         </div>
       </main>
