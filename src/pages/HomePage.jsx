@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { ThemeButton, QuizzesList } from "../components/";
+import { getDefaultQuizzes } from "../helpers";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
-    const getDefaultQuizzes = async () => {
-      try {
-        const url = "http://localhost:3000/api/quizzes/";
-        const response = await fetch(url);
-        const data = await response.json();
-        setQuizzes(data);
-      } catch (error) {
-        console.error(error);
-      }
+    const getQuizzes = async () => {
+      const data = await getDefaultQuizzes();
+      setQuizzes(data);
     };
 
-    getDefaultQuizzes();
+    getQuizzes();
   }, []);
 
   return (
