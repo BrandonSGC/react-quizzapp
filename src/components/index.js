@@ -7,3 +7,6 @@ export * from './QuizHeader';
 export * from './QuestionInfo';
 export * from './OptionsList';
 export * from './OptionCard';
+export * from './RegisterForm';
+export * from './LoginForm';
+export * from './AuthPageTemplate';
