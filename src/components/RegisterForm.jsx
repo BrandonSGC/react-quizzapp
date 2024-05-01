@@ -2,17 +2,17 @@ import { createUser, createNotification } from "../helpers/";
 import { useForm } from "../hooks";
 import "react-toastify/dist/ReactToastify.css"; // Import the CSS for React Toastify
 
-export const RegisterForm = () => {
-  const initialForm = {
-    name: "",
-    surname: "",
-    email: "",
-    username: "",
-    password: "",
-    passwordConfirmation: "",
-  };
+const initialForm = {
+  name: "",
+  surname: "",
+  email: "",
+  username: "",
+  password: "",
+  passwordConfirmation: "",
+};
 
-  const { form, onInputChange } = useForm(initialForm);
+export const RegisterForm = () => {
+  const { form, onInputChange, onResetForm } = useForm(initialForm);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +30,8 @@ export const RegisterForm = () => {
       return;
     }
     createNotification(response.message, "success");
+
+    onResetForm();
   };
 
   return (
@@ -41,13 +43,14 @@ export const RegisterForm = () => {
               Name
             </label>
             <input
-              required
               className="block w-full p-3 bg-purple-100 rounded text-purple-950"
               type="text"
-              placeholder="Your name"
               id="name"
               name="name"
+              placeholder="Your name"
               onChange={onInputChange}
+              value={form.name}
+              required
             />
           </div>
 
@@ -56,13 +59,14 @@ export const RegisterForm = () => {
               Surname
             </label>
             <input
-              required
               className="block w-full p-3 bg-purple-100 rounded text-purple-950"
               type="text"
-              placeholder="Your surname"
               id="surname"
               name="surname"
+              placeholder="Your surname"
               onChange={onInputChange}
+              value={form.surname}
+              required
             />
           </div>
         </div>
@@ -72,13 +76,14 @@ export const RegisterForm = () => {
             Email
           </label>
           <input
-            required
             className="block w-full p-3 bg-purple-100 rounded text-purple-950"
             type="email"
-            placeholder="email@example.com"
             id="email"
             name="email"
+            placeholder="email@example.com"
             onChange={onInputChange}
+            value={form.email}
+            required
           />
         </div>
 
@@ -87,13 +92,14 @@ export const RegisterForm = () => {
             Username
           </label>
           <input
-            required
             className="block w-full p-3 bg-purple-100 rounded text-purple-950"
             type="text"
-            placeholder="Your username"
             id="username"
             name="username"
+            placeholder="Your username"
             onChange={onInputChange}
+            value={form.username}
+            required
           />
         </div>
 
@@ -102,13 +108,14 @@ export const RegisterForm = () => {
             Password
           </label>
           <input
-            required
             className="block w-full p-3 bg-purple-100 rounded text-purple-950"
             type="password"
-            placeholder="Your password"
             id="password"
             name="password"
+            placeholder="Your password"
             onChange={onInputChange}
+            value={form.password}
+            required
           />
         </div>
 
@@ -117,13 +124,14 @@ export const RegisterForm = () => {
             Confirm Password
           </label>
           <input
-            required
             className="block w-full p-3 bg-purple-100 rounded text-purple-950"
             type="password"
-            placeholder="Confirm password"
             id="passwordConfirmation"
             name="passwordConfirmation"
+            placeholder="Confirm password"
             onChange={onInputChange}
+            value={form.passwordConfirmation}
+            required
           />
         </div>
 
