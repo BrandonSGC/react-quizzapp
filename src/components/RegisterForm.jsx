@@ -43,7 +43,7 @@ export const RegisterForm = () => {
               Name
             </label>
             <input
-              className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+              className="block w-full p-2 bg-purple-100 rounded text-purple-950"
               type="text"
               id="name"
               name="name"
@@ -59,7 +59,7 @@ export const RegisterForm = () => {
               Surname
             </label>
             <input
-              className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+              className="block w-full p-2 bg-purple-100 rounded text-purple-950"
               type="text"
               id="surname"
               name="surname"
@@ -76,7 +76,7 @@ export const RegisterForm = () => {
             Email
           </label>
           <input
-            className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+            className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="email"
             id="email"
             name="email"
@@ -92,7 +92,7 @@ export const RegisterForm = () => {
             Username
           </label>
           <input
-            className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+            className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="text"
             id="username"
             name="username"
@@ -108,7 +108,7 @@ export const RegisterForm = () => {
             Password
           </label>
           <input
-            className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+            className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="password"
             id="password"
             name="password"
@@ -124,7 +124,7 @@ export const RegisterForm = () => {
             Confirm Password
           </label>
           <input
-            className="block w-full p-3 bg-purple-100 rounded text-purple-950"
+            className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="password"
             id="passwordConfirmation"
             name="passwordConfirmation"
