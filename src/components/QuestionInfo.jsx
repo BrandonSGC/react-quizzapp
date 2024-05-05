@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
+
 export const QuestionInfo = ({
   questionIndex,
   totalQuestions,
   description,
 }) => {
-  
+  const [progressPercentage, setProgressPercentage] = useState(0);
+
+  useEffect(() => {
+    if (totalQuestions !== 0) {
+      const result = ((questionIndex + 1) / totalQuestions) * 100;
+      setProgressPercentage(Math.round(result));
+    }
+  }, [questionIndex, totalQuestions]);
+
   return (
     <div className="flex flex-col justify-between gap-5">
       <div className="grid gap-5">
@@ -16,7 +26,12 @@ export const QuestionInfo = ({
       </div>
 
       <div className="h-2 overflow-hidden rounded-full bg-slate-300 dark:bg-slate-700">
-        <div className="h-2 bg-purple-500 w-[70%]"></div>
+        <div
+          // I had some problems with tailwind, so I add
+          // In line styles.
+          className="h-2 bg-purple-500"
+          style={{ width: `${progressPercentage}%` }}
+        ></div>
       </div>
     </div>
   );
