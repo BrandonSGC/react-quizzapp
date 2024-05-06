@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQuizById } from "../helpers";
+import { getQuizById } from "../api";
 import { QuestionsDisplay, QuizHeader } from "../components";
 
 export const QuizPage = () => {
@@ -24,7 +24,7 @@ export const QuizPage = () => {
   return (
     <>
       <QuizHeader image_url={image_url} name={name} />
-      <main className="my-36">
+      <main className="h-[calc(100vh-200px)] flex justify-center items-center">
         <QuestionsDisplay questions={questions} />
       </main>
     </>

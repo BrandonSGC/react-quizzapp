@@ -2,7 +2,7 @@ import { ThemeButton } from "./";
 
 export const QuizHeader = ({ image_url, name }) => {
   return (
-    <header className="pt-5 mb-10 md:mb-0">
+    <header className="pt-5">
       <div className="flex justify-end mycontainer">
         <ThemeButton />
       </div>

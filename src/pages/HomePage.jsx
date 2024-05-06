@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ThemeButton, QuizzesList } from "../components/";
-import { getDefaultQuizzes } from "../helpers";
+import { getDefaultQuizzes } from "../api";
 import { Link } from "react-router-dom";
 
 export const HomePage = () => {
@@ -25,7 +25,7 @@ export const HomePage = () => {
         </div>
       </header>
 
-      <main className="grid h-full place-items-center">
+      <main className="grid place-items-center">
         <div className="mycontainer">
           <div className="grid gap-5 my-10 md:grid-cols-2">
             {/* Welcome */}
