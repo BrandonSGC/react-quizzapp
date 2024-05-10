@@ -10,3 +10,4 @@ export * from './OptionCard';
 export * from './RegisterForm';
 export * from './LoginForm';
 export * from './AuthPageTemplate';
+export * from './QuizScore';

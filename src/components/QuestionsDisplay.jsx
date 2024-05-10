@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { OptionsList, QuestionInfo, QuizNavigationButton } from "./";
+import { getQuizScore } from "../api";
 
-export const QuestionsDisplay = ({ questions }) => {
+export const QuestionsDisplay = ({ changeFinishState, questions }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
+
+  const onFinish = async () => {
+    changeFinishState(true);
+  };
 
   useEffect(() => {
     setTotalQuestions(questions.length);
@@ -12,12 +17,12 @@ export const QuestionsDisplay = ({ questions }) => {
   return (
     <div className="grid gap-10 mycontainer">
       <div className="grid md:gap-x-10 gap-y-5 md:grid-cols-2">
-        <QuestionInfo 
-          totalQuestions={totalQuestions} 
-          questionIndex={questionIndex} 
+        <QuestionInfo
+          totalQuestions={totalQuestions}
+          questionIndex={questionIndex}
           description={questions[questionIndex]?.description}
         />
-        
+
         <div className="grid gap-2">
           <OptionsList
             options={questions[questionIndex]?.options}
@@ -34,9 +39,12 @@ export const QuestionsDisplay = ({ questions }) => {
           label="Back"
         />
         <QuizNavigationButton
-          disabled={questionIndex === questions.length - 1}
-          onClick={() => setQuestionIndex(questionIndex + 1)}
-          label="Next"
+          onClick={() =>
+            questionIndex === questions.length - 1
+              ? onFinish()
+              : setQuestionIndex(questionIndex + 1)
+          }
+          label={questionIndex === questions.length - 1 ? "Finish" : "Next"}
         />
       </div>
     </div>

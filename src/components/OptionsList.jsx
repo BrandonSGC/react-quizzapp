@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { OptionCard } from "./OptionCard";
+import { useAnswersContext } from "../hooks";
 
 export const OptionsList = ({ options, questionIndex }) => {
-  const [answers, setAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
+  const { answers, setAnswers } = useAnswersContext();
 
   const onSelectAnswer = (option) => {
     // Update selectedOption when an option is selected.
@@ -21,7 +22,6 @@ export const OptionsList = ({ options, questionIndex }) => {
             ? {
                 ...ans,
                 selectedOptionId: option.id,
-                correct: option.is_correct,
               }
             : ans
         )
@@ -32,7 +32,6 @@ export const OptionsList = ({ options, questionIndex }) => {
         {
           questionId: option.question_id,
           selectedOptionId: option.id,
-          correct: option.is_correct,
         },
       ]);
     }
