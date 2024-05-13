@@ -3,7 +3,7 @@ export * from './QuizCard';
 export * from './QuizzesList';
 export * from './QuizNavigationButton';
 export * from './QuestionsDisplay';
-export * from './QuizHeader';
+export * from './Header';
 export * from './QuestionInfo';
 export * from './OptionsList';
 export * from './OptionCard';

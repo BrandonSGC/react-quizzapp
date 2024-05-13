@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ThemeButton, QuizzesList } from "../components/";
+import { QuizzesList, Header } from "../components/";
 import { getDefaultQuizzes, logout } from "../api";
 import { useUserContext } from "../hooks";
 import { createNotification } from "../helpers";
@@ -31,14 +31,6 @@ export const HomePage = () => {
 
   return (
     <>
-      <header className="">
-        <div className="mycontainer">
-          <div className="flex justify-end py-5">
-            <ThemeButton />
-          </div>
-        </div>
-      </header>
-
       <main className="grid place-items-center">
         <div className="mycontainer">
           <div className="grid gap-5 my-10 md:grid-cols-2">

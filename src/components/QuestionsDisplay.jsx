@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { OptionsList, QuestionInfo, QuizNavigationButton } from "./";
-import { getQuizScore } from "../api";
 
-export const QuestionsDisplay = ({ toggleModal, questions }) => {
+export const QuestionsDisplay = ({ toggleModal, quiz }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
+
+  const { image_url, name, questions } = quiz;
 
   const onFinish = async () => {
     toggleModal(true);
@@ -16,6 +17,14 @@ export const QuestionsDisplay = ({ toggleModal, questions }) => {
 
   return (
     <div className="grid gap-10 mycontainer">
+      {/* // TODO: Put the quiz name and icon.  */}
+      <div className="flex items-center gap-2">
+        <img className="size-12" src={image_url} alt="Icon" />
+        <h1 className="text-4xl font-bold text-slate-700 dark:text-slate-300">
+          {name}
+        </h1>
+      </div>
+
       <div className="grid md:gap-x-10 gap-y-5 md:grid-cols-2">
         <QuestionInfo
           totalQuestions={totalQuestions}

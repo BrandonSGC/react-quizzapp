@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuizById } from "../api";
-import { QuestionsDisplay, QuizHeader, QuizScore, Modal } from "../components";
+import { QuestionsDisplay, QuizScore, Modal } from "../components";
 import { useModal } from "../hooks";
 
 export const QuizPage = () => {
@@ -13,12 +13,7 @@ export const QuizPage = () => {
     image_url: "",
     questions: [],
   });
-  const [hasFinished, setHasFinished] = useState(false);
-  const { name, image_url, questions } = quiz;
-
-  const changeFinishState = (bool) => {
-    setHasFinished(bool);
-  };
+  const { name, image_url } = quiz;
 
   useEffect(() => {
     const getQuizInfo = async () => {
@@ -30,12 +25,8 @@ export const QuizPage = () => {
 
   return (
     <>
-      <QuizHeader image_url={image_url} name={name} />
       <main className="h-[calc(100vh-200px)] flex justify-center items-center">
-        <QuestionsDisplay
-          toggleModal={toggleModal}
-          questions={questions}
-        />
+        <QuestionsDisplay toggleModal={toggleModal} quiz={quiz} />
         {isOpen && (
           <Modal isOpen={isOpen} toggleModal={toggleModal}>
             <QuizScore />
