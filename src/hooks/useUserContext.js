@@ -5,6 +5,7 @@ export const useUserContext = () => {
   const { user, setUser } = useContext(UserContext);
 
   return {
+    ...user,
     user,
     setUser,
   };
