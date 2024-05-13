@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { OptionsList, QuestionInfo, QuizNavigationButton } from "./";
 import { getQuizScore } from "../api";
 
-export const QuestionsDisplay = ({ changeFinishState, questions }) => {
+export const QuestionsDisplay = ({ toggleModal, questions }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const onFinish = async () => {
-    changeFinishState(true);
+    toggleModal(true);
   };
 
   useEffect(() => {

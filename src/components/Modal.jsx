@@ -16,8 +16,8 @@ export const Modal = ({ isOpen, toggleModal, children }) => {
   }, [isOpen]);
 
   return (
-    <div className="fixed w-[90%] mx-auto inset-0 z-50 flex items-center justify-center overflow-hidden">
-      <div className="fixed inset-0 bg-black opacity-50"></div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center mx-auto overflow-hidden backdrop-blur">
+      <div className="fixed inset-0 bg-black opacity-20"></div>
 
       <div className="z-50 bg-white rounded-lg">
         <div className="flex justify-end">
