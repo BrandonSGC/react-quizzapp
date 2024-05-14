@@ -4,7 +4,6 @@ import { OptionsList, QuestionInfo, QuizNavigationButton } from "./";
 export const QuestionsDisplay = ({ toggleModal, quiz }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
-
   const { image_url, name, questions } = quiz;
 
   const onFinish = async () => {
@@ -17,7 +16,6 @@ export const QuestionsDisplay = ({ toggleModal, quiz }) => {
 
   return (
     <div className="grid gap-10 mycontainer">
-      {/* // TODO: Put the quiz name and icon.  */}
       <div className="flex items-center gap-2">
         <img className="size-12" src={image_url} alt="Icon" />
         <h1 className="text-4xl font-bold text-slate-700 dark:text-slate-300">
