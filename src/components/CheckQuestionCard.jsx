@@ -10,10 +10,10 @@ export const CheckQuestionCard = ({
         is_correct ? "bg-green-500" : "bg-red-500"
       }`}
     >
-      <div className="flex justify-between text-xl font-bold">
+      <div className="flex flex-col-reverse justify-between text-xl font-bold md:flex-row">
         <p className="mb-2 font-bold">{description}</p>
         <div
-          className={`p-1 px-3 rounded-2xl text-slate-700 text-base font-light flex gap-1 items-center ${
+          className={`p-1 px-3 rounded-2xl text-slate-700 text-base font-light flex justify-center gap-1 items-center ${
             is_correct ? "bg-green-300" : "bg-red-300"
           }`}
         >
