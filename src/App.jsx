@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./context/UserContext";
 import { AnswersProvider } from "./context/AnswersContext";
 import { Header } from "./components";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

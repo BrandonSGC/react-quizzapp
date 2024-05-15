@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { createUser } from "../api";
 import { createNotification } from '../helpers';
-import { useForm } from "../hooks";
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS for React Toastify
+import { useForm, useSpinner, useUserContext } from "../hooks";
+import { Spinner } from './';
 
 const initialForm = {
   name: "",
@@ -14,13 +15,18 @@ const initialForm = {
 
 export const RegisterForm = () => {
   const { form, onInputChange, onResetForm } = useForm(initialForm);
+  const { setUser } = useUserContext();
+  const navigate = useNavigate();
+  const { isLoading, setIsLoading } = useSpinner();
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     // Validate password confirmation.
     if (form.password !== form.passwordConfirmation) {
       createNotification("Password doesn't match.", "warning");
+      setIsLoading(false);
       return;
     }
 
@@ -28,11 +34,16 @@ export const RegisterForm = () => {
 
     if (response.statusCode === 409 || response.statusCode === 500) {
       createNotification(response.message, "error");
+      setIsLoading(false);
       return;
     }
+    setIsLoading(false);
     createNotification(response.message, "success");
 
+    // Set user context
+    setUser({...response.user, isAuthenticated: true});
     onResetForm();
+    navigate('/');
   };
 
   return (
@@ -139,6 +150,8 @@ export const RegisterForm = () => {
         <button className="w-full p-2 font-semibold text-white bg-purple-500 rounded hover:bg-purple-600">
           Create User
         </button>
+
+        {isLoading && <Spinner />}
       </form>
     </>
   );
