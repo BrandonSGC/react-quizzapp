@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { HomePage, LoginPage, QuizPage, RegisterPage } from "./pages/";
+import { CheckAnswersPage, HomePage, LoginPage, QuizPage, RegisterPage } from "./pages/";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./context/UserContext";
 import { AnswersProvider } from "./context/AnswersContext";
@@ -12,12 +12,15 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/quiz/:id" element={<QuizPage />} />
+          {/* Authorization */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          {/* Quiz related */}
+          <Route path="/quizzes/:id" element={<QuizPage />} />
+          <Route path="/quizzes/:id/answers" element={<CheckAnswersPage />} />
+          {/* Any other route redirect to HomePage. */}
           <Route path="/*" element={<HomePage />} />
         </Routes>
-
         <ToastContainer />
       </AnswersProvider>
     </UserProvider>

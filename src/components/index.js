@@ -12,3 +12,4 @@ export * from './LoginForm';
 export * from './AuthPageTemplate';
 export * from './QuizScore';
 export * from './Modal';
+export * from './CheckQuestionCard';

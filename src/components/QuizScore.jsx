@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAnswersContext } from "../hooks";
 import { getQuizScore } from "../api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const QuizScore = () => {
   const [answersIds, setAnswersIds] = useState([]);
@@ -22,7 +22,6 @@ export const QuizScore = () => {
     const sendAnswers = async () => {
       const response = await getQuizScore(id, answersIds);
       setScore(response.result);
-      setAnswers([]);
     };
 
     answersIds.length > 0 && sendAnswers();
@@ -37,9 +36,12 @@ export const QuizScore = () => {
         correct answers out of{" "}
         <span className="font-bold text-purple-950">{totalQuestions}</span>
       </p>
-      <button className="p-2 font-medium text-white bg-purple-500 rounded hover:bg-purple-600">
+      <Link 
+        className="p-2 font-medium text-white bg-purple-500 rounded hover:bg-purple-600"
+        to={`/quizzes/${id}/answers`}
+      >
         Check answers
-      </button>
+      </Link>
     </div>
   );
 };
