@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "../assets/";
 
 export const ThemeButton = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
   useEffect(() => {
     const body = document.body;
