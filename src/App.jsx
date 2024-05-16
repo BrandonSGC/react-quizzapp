@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
+    {/*Coment from idx google...*/}
     <UserProvider>
       <AnswersProvider>
         <Header />
