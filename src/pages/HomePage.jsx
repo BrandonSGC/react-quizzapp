@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { QuizzesList, Header } from "../components/";
+import { QuizzesList } from "../components/";
 import { getDefaultQuizzes, logout } from "../api";
 import { useUserContext } from "../hooks";
 import { createNotification } from "../helpers";
@@ -23,7 +23,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     const getQuizzes = async () => {
-      const data = await getDefaultQuizzes();
+      const data = await getDefaultQuizzes(user?.id);
       setQuizzes(data);
     };
     getQuizzes();

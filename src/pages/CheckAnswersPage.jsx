@@ -51,7 +51,7 @@ export const CheckAnswersPage = () => {
         </div>
 
         <Link
-          className="block w-32 p-2 mx-auto mt-10 font-medium text-center text-white bg-purple-500 rounded shadow hover:bg-purple-600"
+          className="block w-32 p-2 mx-auto my-10 font-medium text-center text-white bg-purple-500 rounded shadow hover:bg-purple-600"
           to="/"
         >
           Back to home
