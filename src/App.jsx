@@ -1,5 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { CheckAnswersPage, HomePage, LoginPage, QuizPage, RegisterPage } from "./pages/";
+import {
+  CheckAnswersPage,
+  CreateQuizPage,
+  HomePage,
+  LoginPage,
+  QuizPage,
+  RegisterPage,
+} from "./pages/";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./context/UserContext";
 import { AnswersProvider } from "./context/AnswersContext";
@@ -8,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    {/*Coment from idx google...*/}
     <UserProvider>
       <AnswersProvider>
         <Header />
@@ -20,6 +26,7 @@ function App() {
           {/* Quiz related */}
           <Route path="/quizzes/:id" element={<QuizPage />} />
           <Route path="/quizzes/:id/answers" element={<CheckAnswersPage />} />
+          <Route path="/quizzes/create-quiz" element={<CreateQuizPage />} />
           {/* Any other route redirect to HomePage. */}
           <Route path="/*" element={<HomePage />} />
         </Routes>

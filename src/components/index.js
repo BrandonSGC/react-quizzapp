@@ -14,3 +14,6 @@ export * from './QuizScore';
 export * from './Modal';
 export * from './CheckQuestionCard';
 export * from './Spinner';
+export * from './CreateQuizButton';
+export * from './CreateQuestionCard';
+export * from './CreateQuestionOption';

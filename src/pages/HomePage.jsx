@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { QuizzesList } from "../components/";
+import { CreateQuizButton, QuizzesList } from "../components/";
 import { getDefaultQuizzes, logout } from "../api";
 import { useUserContext } from "../hooks";
 import { createNotification } from "../helpers";
@@ -33,10 +33,10 @@ export const HomePage = () => {
     <>
       <main className="grid place-items-center">
         <div className="mycontainer">
-          <div className="grid gap-5 my-10 md:grid-cols-2">
+          <div className="grid gap-5 my-5 md:my-10 md:grid-cols-2">
             {/* Welcome */}
             <div className="space-y-5">
-              <h1 className="text-5xl font-black text-purple-700 dark:text-purple-100 text-balance">
+              <h1 className="text-6xl font-black text-purple-700 dark:text-purple-100 text-balance">
                 Welcome to the QuizzApp
               </h1>
               <p className="text-xl text-slate-500 dark:text-slate-300">
@@ -71,6 +71,18 @@ export const HomePage = () => {
             </div>
 
             <QuizzesList quizzes={quizzes} />
+          </div>
+
+          {/* Create quiz Navigation. */}
+          <div className="mt-6 md:mt-16">
+            <div className="flex flex-col items-center justify-center">
+              <h3 className="text-5xl font-black text-center text-pink-500">
+                Create your own quiz now{isAuthenticated && ` ${user.name}`}!
+              </h3>
+              <div className="grid place-items-center">
+                <CreateQuizButton />
+              </div>
+            </div>
           </div>
         </div>
       </main>
