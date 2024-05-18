@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CreateQuestionOption } from "./CreateQuestionOption";
 import { useForm } from "../hooks";
 
-export const CreateQuestionCard = ({ i, setForm }) => {
+export const CreateQuestionCard = ({ questionIndex, setForm }) => {
   // State to keep track of which option is currently checked.
   const [checkedIndex, setCheckedIndex] = useState(null);
   const { form, onInputChange } = useForm({ id: "", description: "" });
@@ -12,14 +12,14 @@ export const CreateQuestionCard = ({ i, setForm }) => {
       const { questions } = prevForm;
 
       // Validate we dont have the question object already.
-      const questionExists = questions.find((question) => question.id === i);
+      const questionExists = questions.find((question) => question.id === questionIndex);
 
       if (questionExists) {
         // Update the question.
         return {
           ...prevForm,
           questions: questions.map((question) =>
-            question.id === i
+            question.id === questionIndex
               ? {
                   ...question,
                   description: form.description,
@@ -34,7 +34,7 @@ export const CreateQuestionCard = ({ i, setForm }) => {
         questions: [
           ...questions,
           {
-            id: i,
+            id: questionIndex,
             description: form.description,
             options: [],
           },
@@ -59,15 +59,15 @@ export const CreateQuestionCard = ({ i, setForm }) => {
         <div className="w-full">
           <label
             className="text-xl font-bold text-pink-600 dark:text-pink-500"
-            htmlFor="description"
+            htmlFor={`description${questionIndex}`}
           >
-            Question #{i}
+            Question #{questionIndex}
           </label>
           <input
             className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="text"
             name="description"
-            id="description"
+            id={`description${questionIndex}`}
             placeholder="Already wrote a question?"
             onChange={onInputChange}
             onBlur={onSaveQuestion}
@@ -79,7 +79,8 @@ export const CreateQuestionCard = ({ i, setForm }) => {
           {[1, 2, 3, 4].map((optionIndex) => (
             <CreateQuestionOption
               key={optionIndex}
-              i={optionIndex}
+              optionIndex={optionIndex}
+              questionIndex={questionIndex}
               checkedIndex={checkedIndex}
               handleCheckboxChange={handleCheckboxChange}
             />

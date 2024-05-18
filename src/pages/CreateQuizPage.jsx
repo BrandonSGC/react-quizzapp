@@ -47,6 +47,7 @@ export const CreateQuizPage = () => {
               placeholder="Quiz title"
               onChange={onInputChange}
               value={form.name}
+              autoComplete="off"
               required
             />
           </div>
@@ -77,7 +78,7 @@ export const CreateQuizPage = () => {
         {/* List question every time you click on "Add Question" */}
         <div className="">
           {questions.map((question, i) => (
-            <CreateQuestionCard key={question} i={i + 1} setForm={setForm} />
+            <CreateQuestionCard key={question} questionIndex={i + 1} setForm={setForm} />
           ))}
         </div>
 
