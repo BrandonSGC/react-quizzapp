@@ -1,7 +1,7 @@
 export const CreateQuestionOption = ({
   i,
-  hasAnswer,
-  changeHasAnswerState,
+  checkedIndex,
+  handleCheckboxChange,
 }) => {
   return (
     <>
@@ -25,8 +25,9 @@ export const CreateQuestionOption = ({
               id={`answer${i}`}
               name={`answer${i}`}
               type="checkbox"
-              onClick={changeHasAnswerState}
-              disabled={hasAnswer}
+              checked={checkedIndex === i}
+              onChange={() => handleCheckboxChange(i)}
+              disabled={checkedIndex !== null && checkedIndex !== i}
             />
           </div>
         </div>
