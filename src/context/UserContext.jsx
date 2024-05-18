@@ -5,11 +5,11 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: "",
-    name: "",
+    name: "Brandon",
     surname: "",
     email: "",
     username: "",
-    isAuthenticated: false,
+    isAuthenticated: true,
   });
 
   return (

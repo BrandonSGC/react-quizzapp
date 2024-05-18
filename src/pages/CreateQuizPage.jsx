@@ -1,45 +1,21 @@
 import { useState } from "react";
 import { CreateQuestionCard } from "../components/CreateQuestionCard";
-import { useForm, useSpinner } from "../hooks";
-
-const initialState = {
-  title: "New Quiz",
-  user_id: "1",
-  image: "/img/quiz_ilustration.svg",
-  questions: [
-    {
-      description: "question 1",
-      options: [
-        {
-          description: "Option 1",
-          is_correct: false,
-        },
-        {
-          description: "Option 2",
-          is_correct: true,
-        },
-        {
-          description: "Option 3",
-          is_correct: false,
-        },
-        {
-          description: "Option 4",
-          is_correct: false,
-        },
-      ],
-    },
-  ],
-};
+import { useForm, useSpinner, useUserContext } from "../hooks";
 
 export const CreateQuizPage = () => {
-  const { onInputChange, form } = useForm(initialState);
+  const { id, name } = useUserContext();
+  const { form, onInputChange, onInputFileChange, setForm } = useForm({
+    name: '',
+    user_id: id,
+    image: "Upload Image",
+    questions: [],
+  });
   const { isLoading, setIsLoading } = useSpinner();
   const [dataComplete, setDataComplete] = useState(false);
   const [questions, setQuestions] = useState([]);
 
   const onAddQuestion = (e) => {
     e.preventDefault();
-    console.log("Adding Question");
     setQuestions([...questions, (questions.length += 1)]);
   };
 
@@ -85,7 +61,7 @@ export const CreateQuizPage = () => {
                 src="/icons/upload.svg"
                 alt="upload icon"
               />
-              <p>Upload Image</p>
+              <p>{form.image}</p>
             </label>
             <input
               className="hidden"
@@ -93,7 +69,7 @@ export const CreateQuizPage = () => {
               accept=".svg,.jpg,.png"
               id="image"
               name="image"
-              onChange={onInputChange}
+              onChange={onInputFileChange}
             />
           </div>
         </div>
@@ -101,7 +77,7 @@ export const CreateQuizPage = () => {
         {/* List question every time you click on "Add Question" */}
         <div className="">
           {questions.map((question, i) => (
-            <CreateQuestionCard key={question} i={i + 1} />
+            <CreateQuestionCard key={question} i={i + 1} setForm={setForm} />
           ))}
         </div>
 
@@ -115,7 +91,7 @@ export const CreateQuizPage = () => {
         </button>
 
         <button
-          className="w-full p-2 my-3 font-semibold text-white bg-purple-500 rounded hover:bg-purple-600 disabled:opacity-50"
+          className="w-full p-2 my-3 font-semibold text-white bg-pink-500 rounded hover:bg-pink-600 disabled:hover:bg-pink-500 disabled:opacity-50"
           disabled={!dataComplete}
         >
           Create Quiz

@@ -1,9 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CreateQuestionOption } from "./CreateQuestionOption";
+import { useForm } from "../hooks";
 
-export const CreateQuestionCard = ({ i }) => {
+export const CreateQuestionCard = ({ i, setForm }) => {
   // State to keep track of which option is currently checked.
   const [checkedIndex, setCheckedIndex] = useState(null);
+  const { form, onInputChange } = useForm({ id: "", description: "" });
+
+  const onSaveQuestion = () => {
+    setForm((prevForm) => {
+      const { questions } = prevForm;
+
+      // Validate we dont have the question object already.
+      const questionExists = questions.find((question) => question.id === i);
+
+      if (questionExists) {
+        // Update the question.
+        return {
+          ...prevForm,
+          questions: questions.map((question) =>
+            question.id === i
+              ? {
+                  ...question,
+                  description: form.description,
+                }
+              : question
+          ),
+        };
+      }
+
+      return {
+        ...prevForm,
+        questions: [
+          ...questions,
+          {
+            id: i,
+            description: form.description,
+            options: [],
+          },
+        ],
+      };
+    });
+  };
 
   const handleCheckboxChange = (index) => {
     if (checkedIndex === index) {
@@ -21,16 +59,18 @@ export const CreateQuestionCard = ({ i }) => {
         <div className="w-full">
           <label
             className="text-xl font-bold text-pink-600 dark:text-pink-500"
-            htmlFor="question"
+            htmlFor="description"
           >
             Question #{i}
           </label>
           <input
             className="block w-full p-2 bg-purple-100 rounded text-purple-950"
             type="text"
-            name="question"
-            id="question"
+            name="description"
+            id="description"
             placeholder="Already wrote a question?"
+            onChange={onInputChange}
+            onBlur={onSaveQuestion}
           />
         </div>
 

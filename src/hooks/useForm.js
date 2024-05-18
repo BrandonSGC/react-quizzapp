@@ -12,6 +12,14 @@ export const useForm = (initialState) => {
     });
   }
 
+  const onInputFileChange = (e) => {
+    const { name, files} = e.target;
+    setForm({
+      ...form,
+      [name]: files[0].name
+    });
+  }
+
   const onResetForm = () => {
     setForm(initialState)
   }
@@ -20,6 +28,8 @@ export const useForm = (initialState) => {
     ...form,
     form,
     onInputChange,
+    onInputFileChange,
     onResetForm,
+    setForm,
   }
 }
