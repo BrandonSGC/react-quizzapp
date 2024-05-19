@@ -4,19 +4,25 @@ export const useForm = (initialState) => {
   const [form, setForm] = useState(initialState);
 
   const onInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked, files } = e.target;
+
+    if (type === 'checkbox') {
+      setForm({
+        ...form,
+        [name]: checked
+      })
+    }
+
+    if (type === 'file') {
+      setForm({
+        ...form,
+        [name]: files[0].name
+      });
+    }
 
     setForm({
       ...form,
       [name]: value,
-    });
-  }
-
-  const onInputFileChange = (e) => {
-    const { name, files} = e.target;
-    setForm({
-      ...form,
-      [name]: files[0].name
     });
   }
 
@@ -28,7 +34,6 @@ export const useForm = (initialState) => {
     ...form,
     form,
     onInputChange,
-    onInputFileChange,
     onResetForm,
     setForm,
   }

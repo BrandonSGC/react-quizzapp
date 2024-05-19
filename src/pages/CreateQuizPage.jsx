@@ -4,7 +4,7 @@ import { useForm, useSpinner, useUserContext } from "../hooks";
 
 export const CreateQuizPage = () => {
   const { id, name } = useUserContext();
-  const { form, onInputChange, onInputFileChange, setForm } = useForm({
+  const { form, onInputChange, setForm } = useForm({
     name: '',
     user_id: id,
     image: "Upload Image",
@@ -13,6 +13,8 @@ export const CreateQuizPage = () => {
   const { isLoading, setIsLoading } = useSpinner();
   const [dataComplete, setDataComplete] = useState(false);
   const [questions, setQuestions] = useState([]);
+
+  console.log(form);
 
   const onAddQuestion = (e) => {
     e.preventDefault();
@@ -70,7 +72,7 @@ export const CreateQuizPage = () => {
               accept=".svg,.jpg,.png"
               id="image"
               name="image"
-              onChange={onInputFileChange}
+              onChange={onInputChange}
             />
           </div>
         </div>

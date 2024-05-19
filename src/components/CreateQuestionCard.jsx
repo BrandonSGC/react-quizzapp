@@ -3,19 +3,78 @@ import { CreateQuestionOption } from "./CreateQuestionOption";
 import { useForm } from "../hooks";
 
 export const CreateQuestionCard = ({ questionIndex, setForm }) => {
+  const { form, onInputChange } = useForm({ id: "", description: "" });
   // State to keep track of which option is currently checked.
   const [checkedIndex, setCheckedIndex] = useState(null);
-  const { form, onInputChange } = useForm({ id: "", description: "" });
 
-  const onSaveQuestion = () => {
+  const handleCheckboxChange = (index) => {
+    if (checkedIndex === index) {
+      // Uncheck if the same checkbox is clicked again.
+      setCheckedIndex(null);
+      return;
+    }
+    setCheckedIndex(index);
+  };
+
+  const updateOptionInForm = (updatedOption) => {
+    // Update the form state with the new or updated option.
     setForm((prevForm) => {
       const { questions } = prevForm;
+  
+      // Map through the questions to find the one that matches 
+      // the current questionIndex.
+      const updatedQuestions = questions.map((question) => {
+        if (question.id === questionIndex) {
+          // Get the options of the current question or initialize 
+          // an empty array.
+          const options = question.options || []; 
+          // Check if the option already exists.
+          const optionExists = options.find(
+            (option) => option.id === updatedOption.id
+          );
+  
+          let newOptions;
+          if (optionExists) {
+            // If the option exists, update it
+            newOptions = options.map((option) =>
+              option.id === updatedOption.id ? updatedOption : option
+            );
+          } else {
+            // If the option does not exist, add it to the options array.
+            newOptions = [...options, updatedOption];
+          }
+  
+          // Return the updated question with the new or updated options.
+          return {
+            ...question,
+            description: form.description,
+            options: newOptions,
+          };
+        }
+        // Return the question unchanged if it does not match the questionIndex.
+        return question; 
+      });
+  
+      // Return the updated form state with the modified questions array.
+      return {
+        ...prevForm,
+        questions: updatedQuestions,
+      };
+    });
+  };
+  
 
-      // Validate we dont have the question object already.
-      const questionExists = questions.find((question) => question.id === questionIndex);
-
+  const onSaveQuestion = () => {
+    // Update the form state with the new or updated question description.
+    setForm((prevForm) => {
+      const { questions } = prevForm;
+      // Check if the question already exists
+      const questionExists = questions.find(
+        (question) => question.id === questionIndex
+      );
+  
       if (questionExists) {
-        // Update the question.
+        // If the question exists, update its description.
         return {
           ...prevForm,
           questions: questions.map((question) =>
@@ -28,7 +87,8 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
           ),
         };
       }
-
+  
+      // If the question does not exist, add it to the questions array.
       return {
         ...prevForm,
         questions: [
@@ -42,19 +102,10 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
       };
     });
   };
-
-  const handleCheckboxChange = (index) => {
-    if (checkedIndex === index) {
-      // Uncheck if the same checkbox is clicked again.
-      setCheckedIndex(null);
-      return;
-    }
-    setCheckedIndex(index);
-  };
+  
 
   return (
     <>
-      {/* Create Question Card */}
       <div className="p-4 my-5 border border-purple-400 rounded dark:bg-slate-700 dark:border-none">
         <div className="w-full">
           <label
@@ -83,6 +134,7 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
               questionIndex={questionIndex}
               checkedIndex={checkedIndex}
               handleCheckboxChange={handleCheckboxChange}
+              updateOptionInForm={updateOptionInForm}
             />
           ))}
         </div>
