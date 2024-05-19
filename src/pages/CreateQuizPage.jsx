@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateQuestionCard } from "../components/CreateQuestionCard";
 import { useForm, useSpinner, useUserContext } from "../hooks";
 
 export const CreateQuizPage = () => {
-  const { id, name } = useUserContext();
+  const { id } = useUserContext();
   const { form, onInputChange, setForm } = useForm({
-    name: '',
-    user_id: id,
+    name: "",
     image: "Upload Image",
     questions: [],
   });
@@ -23,8 +22,34 @@ export const CreateQuizPage = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Creating Quiz");
+
+    // Format quiz object.
+    const quiz = {
+      name: form.name.trim(),
+      user_id: id,
+      image: form.image,
+      questions: form.questions,
+    }
+
+    console.log("Creating quiz...", quiz);
   };
+
+  // Validate minimun data needed for creating a new quiz.
+  // (name, user_id, image, at least one question and one answer).
+  useEffect(() => {
+    if (form.questions.length > 0) {
+      const questionHasOptions = form.questions.every(
+        (question) =>
+          question.options.length > 0 &&
+          question.options.some((option) => option.is_correct === true)
+      );
+      if (form.name.trim() !== '' && id !== '' && questionHasOptions) {
+        setDataComplete(true);
+        return;
+      }
+    }
+    setDataComplete(false);
+  }, [form]);
 
   return (
     <div className="mycontainer">
@@ -80,7 +105,11 @@ export const CreateQuizPage = () => {
         {/* List question every time you click on "Add Question" */}
         <div className="">
           {questions.map((question, i) => (
-            <CreateQuestionCard key={question} questionIndex={i + 1} setForm={setForm} />
+            <CreateQuestionCard
+              key={question}
+              questionIndex={i + 1}
+              setForm={setForm}
+            />
           ))}
         </div>
 

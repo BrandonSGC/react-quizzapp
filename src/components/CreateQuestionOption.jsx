@@ -18,9 +18,12 @@ export const CreateQuestionOption = ({
 
     const updatedOption = {
       ...option,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value.trim(),
     };
 
+    // Validate the option is not empty.
+    if (updatedOption.description.trim() === "") return;
+    
     setOption(updatedOption);
     updateOptionInForm(updatedOption);
   };

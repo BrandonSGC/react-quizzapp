@@ -47,7 +47,7 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
           // Return the updated question with the new or updated options.
           return {
             ...question,
-            description: form.description,
+            description: form.description.trim(),
             options: newOptions,
           };
         }
@@ -65,9 +65,13 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
   
 
   const onSaveQuestion = () => {
+    // Validate the question description is not empty.
+    if (form.description.trim() === '') return;
+
     // Update the form state with the new or updated question description.
     setForm((prevForm) => {
       const { questions } = prevForm;
+
       // Check if the question already exists
       const questionExists = questions.find(
         (question) => question.id === questionIndex
@@ -81,7 +85,7 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
             question.id === questionIndex
               ? {
                   ...question,
-                  description: form.description,
+                  description: form.description.trim(),
                 }
               : question
           ),
@@ -95,7 +99,7 @@ export const CreateQuestionCard = ({ questionIndex, setForm }) => {
           ...questions,
           {
             id: questionIndex,
-            description: form.description,
+            description: form.description.trim(),
             options: [],
           },
         ],
