@@ -2,6 +2,12 @@ import { useEffect } from "react";
 import { CloseIcon } from "../assets";
 
 export const Modal = ({ isOpen, toggleModal, children }) => {
+
+  const onClose = (e) => {
+    e.preventDefault();
+    toggleModal();
+  }
+
   useEffect(() => {
     const body = document.querySelector("body");
 
@@ -23,7 +29,7 @@ export const Modal = ({ isOpen, toggleModal, children }) => {
         <div className="flex justify-end">
           <button
             className="pt-2 pr-2 text-gray-500 hover:text-gray-700"
-            onClick={toggleModal}
+            onClick={onClose}
           >
             <CloseIcon />
           </button>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuizById } from "../api";
-import { QuestionsDisplay, QuizScore, Modal } from "../components";
 import { useModal } from "../hooks";
+import { QuestionsDisplay, QuizScore, Modal } from "../components";
 
 export const QuizPage = () => {
   const { id } = useParams();
@@ -13,7 +13,6 @@ export const QuizPage = () => {
     image_url: "",
     questions: [],
   });
-  const { name, image_url } = quiz;
 
   useEffect(() => {
     const getQuizInfo = async () => {

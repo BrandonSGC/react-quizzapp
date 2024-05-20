@@ -14,7 +14,7 @@ export const Header = () => {
     <header className="py-5">
       <div className="flex items-center justify-between mycontainer">
         {(pathname !== "/") && (
-          <div onClick={handleClick} className="size-10">
+          <div onClick={handleClick} className="cursor-pointer size-10">
             <BackArrowIcon />
           </div>
         )}

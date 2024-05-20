@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import { CreateQuestionCard } from "../components/CreateQuestionCard";
-import { useForm, useSpinner, useUserContext } from "../hooks";
+import { CreateQuestionCard, Modal, Spinner } from "../components/";
+import { useForm, useModal, useSpinner, useUserContext } from "../hooks";
+import { createQuiz } from "../api/";
+import { Link } from "react-router-dom";
+
+const initialForm = {
+  name: "",
+  image: "",
+  questions: [],
+};
 
 export const CreateQuizPage = () => {
   const { id } = useUserContext();
-  const { form, onInputChange, setForm } = useForm({
-    name: "",
-    image: "Upload Image",
-    questions: [],
-  });
-  const { isLoading, setIsLoading } = useSpinner();
+  const { form, onInputChange, setForm } = useForm(initialForm);
+  const { isLoading, setIsLoading } = useSpinner(false);
+  const { isOpen, toggleModal } = useModal();
   const [dataComplete, setDataComplete] = useState(false);
   const [questions, setQuestions] = useState([]);
-
-  console.log(form);
+  const [quiz, setQuiz] = useState({});
 
   const onAddQuestion = (e) => {
     e.preventDefault();
@@ -22,6 +26,7 @@ export const CreateQuizPage = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     // Format quiz object.
     const quiz = {
@@ -29,9 +34,13 @@ export const CreateQuizPage = () => {
       user_id: id,
       image: form.image,
       questions: form.questions,
-    }
+    };
 
-    console.log("Creating quiz...", quiz);
+    const response = await createQuiz(quiz);
+    console.log(response);
+    setQuiz(response.quiz);
+    setIsLoading(false);
+    toggleModal(true);
   };
 
   // Validate minimun data needed for creating a new quiz.
@@ -43,7 +52,7 @@ export const CreateQuizPage = () => {
           question.options.length > 0 &&
           question.options.some((option) => option.is_correct === true)
       );
-      if (form.name.trim() !== '' && id !== '' && questionHasOptions) {
+      if (form.name.trim() !== "" && id !== "" && questionHasOptions) {
         setDataComplete(true);
         return;
       }
@@ -53,11 +62,11 @@ export const CreateQuizPage = () => {
 
   return (
     <div className="mycontainer">
-      <h1 className="my-10 text-4xl font-black text-center text-pink-500 md:text-5xl">
+      <h1 className="mb-5 text-4xl font-black text-center text-pink-500 md:text-5xl">
         Create an awesome quiz in minutes!
       </h1>
 
-      <form onSubmit={onSubmit} className="">
+      <form onSubmit={onSubmit} className="" encType="multipart/form-data">
         <div className="flex flex-col items-end gap-2 md:flex-row">
           <div className="w-full md:w-[70%]">
             <label
@@ -89,7 +98,7 @@ export const CreateQuizPage = () => {
                 src="/icons/upload.svg"
                 alt="upload icon"
               />
-              <p>{form.image}</p>
+              <p>{form.image.name ? form.image.name : "Upload Image"}</p>
             </label>
             <input
               className="hidden"
@@ -113,23 +122,55 @@ export const CreateQuizPage = () => {
           ))}
         </div>
 
-        <button
-          className="w-full gap-2 p-2 mt-2 font-semibold text-white bg-purple-500 rounded hover:bg-purple-600"
-          onClick={onAddQuestion}
-        >
-          <p>
-            <span className="text-xl">+</span> Add Question
-          </p>
-        </button>
-
-        <button
-          className="w-full p-2 my-3 font-semibold text-white bg-pink-500 rounded hover:bg-pink-600 disabled:hover:bg-pink-500 disabled:opacity-50"
-          disabled={!dataComplete}
-        >
-          Create Quiz
-        </button>
-
         {isLoading && <Spinner />}
+
+        <div className="flex flex-col gap-2 my-5">
+          <button
+            className="w-full gap-2 p-2 font-semibold text-white bg-purple-500 rounded hover:bg-purple-600"
+            onClick={onAddQuestion}
+          >
+            <p>
+              <span className="text-xl">+</span> Add Question
+            </p>
+          </button>
+
+          <button
+            className="w-full p-2 font-semibold text-white bg-pink-500 rounded hover:bg-pink-600 disabled:hover:bg-pink-500 disabled:opacity-50"
+            disabled={!dataComplete}
+          >
+            Create Quiz
+          </button>
+        </div>
+
+        {isOpen && (
+          <Modal isOpen={isOpen} toggleModal={toggleModal}>
+            <div className="flex flex-col items-center justify-center p-6 w-96">
+              <img
+                className="max-w-[150px]"
+                src="/img/quiz_ilustration.svg"
+                alt=""
+              />
+              <h1 className="text-3xl font-black text-center text-purple-500">
+                Quiz created successfully!
+              </h1>
+              <div className="flex gap-2 mt-5">
+                <Link
+                  className="p-2 font-medium border border-pink-400 rounded text-cyan-500 border-pink hover:bg-purple-100"
+                  to="/home"
+                >
+                  Go to Home
+                </Link>
+
+                <Link
+                  className="p-2 font-medium bg-pink-400 border rounded shadow text-white-500 border-pink hover:bg-pink-500"
+                  to={`/quizzes/${quiz.id}`}
+                >
+                  Play Quiz
+                </Link>
+              </div>
+            </div>
+          </Modal>
+        )}
       </form>
     </div>
   );

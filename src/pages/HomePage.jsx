@@ -8,7 +8,6 @@ import { createNotification } from "../helpers";
 export const HomePage = () => {
   const { user, setUser, isAuthenticated, name, initialState } = useUserContext();
   const [quizzes, setQuizzes] = useState([]);
-  console.log(user);
 
   const onLogout = async () => {
     // TODO: Alert to confirm logout.

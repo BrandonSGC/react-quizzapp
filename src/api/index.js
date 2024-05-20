@@ -5,3 +5,4 @@ export * from "./login";
 export * from "./logout";
 export * from "./getQuizScore";
 export * from "./getReviewedQuiz";
+export * from "./createQuiz";
