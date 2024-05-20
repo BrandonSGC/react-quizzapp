@@ -6,8 +6,9 @@ import { useUserContext } from "../hooks";
 import { createNotification } from "../helpers";
 
 export const HomePage = () => {
-  const { user, setUser, isAuthenticated, name } = useUserContext();
+  const { user, setUser, isAuthenticated, name, initialState } = useUserContext();
   const [quizzes, setQuizzes] = useState([]);
+  console.log(user);
 
   const onLogout = async () => {
     // TODO: Alert to confirm logout.
@@ -15,7 +16,7 @@ export const HomePage = () => {
     const response = await logout();
     if (response.status === 200) {
       createNotification("Logout succesfully", "success");
-      setUser({ ...user, isAuthenticated: false });
+      setUser(initialState);
       return;
     }
     createNotification("Error ocurred while loggin out", "error");
@@ -27,7 +28,7 @@ export const HomePage = () => {
       setQuizzes(data);
     };
     getQuizzes();
-  }, []);
+  }, [user]);
 
   return (
     <>
