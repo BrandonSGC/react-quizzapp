@@ -6,3 +6,4 @@ export * from "./logout";
 export * from "./getQuizScore";
 export * from "./getReviewedQuiz";
 export * from "./createQuiz";
+export * from "./deleteQuizById";

@@ -37,7 +37,6 @@ export const CreateQuizPage = () => {
     };
 
     const response = await createQuiz(quiz);
-    console.log(response);
     setQuiz(response.quiz);
     setIsLoading(false);
     toggleModal(true);

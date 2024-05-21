@@ -70,7 +70,7 @@ export const HomePage = () => {
               </div>
             </div>
 
-            <QuizzesList quizzes={quizzes} />
+            <QuizzesList quizzes={quizzes} setQuizzes={setQuizzes} />
           </div>
 
           {/* Create quiz Navigation. */}
