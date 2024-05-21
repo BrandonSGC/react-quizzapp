@@ -3,6 +3,7 @@ import { CheckQuestionCard } from "../components";
 import { useAnswersContext } from "../hooks";
 import { Link, useParams } from "react-router-dom";
 import { getReviewedQuiz } from "../api";
+import { API } from '../'
 
 export const CheckAnswersPage = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ export const CheckAnswersPage = () => {
       <div className="mycontainer">
         {/* Quiz title*/}
         <div className="flex justify-center gap-2 mb-5 item-center">
-          <img className="size-10" src={image_url} alt="Quiz icon" />
+          <img className="size-10" src={`${API}${image_url}`} alt="Quiz icon" />
           <h2 className="text-3xl font-bold">{name}</h2>
         </div>
 
