@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { API } from "../../index";
+import { API } from "../../constants";
 import { DeleteIcon } from "../../assets";
 import { useModal } from "../../hooks";
 import { Modal } from "../common";
