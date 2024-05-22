@@ -1,5 +1,5 @@
-import { BackArrowIcon } from "../assets";
-import { ThemeButton } from ".";
+import { BackArrowIcon } from "../../assets";
+import { ThemeButton } from './'
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {

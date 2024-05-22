@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { OptionCard } from "./OptionCard";
-import { useAnswersContext } from "../hooks";
+import { useAnswersContext } from "../../hooks";
 
 export const OptionsList = ({ options, questionIndex }) => {
   const [selectedOption, setSelectedOption] = useState(null);

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../api";
-import { createNotification } from '../helpers';
-import { useForm, useSpinner, useUserContext } from "../hooks";
-import { Spinner } from './';
+import { createUser } from "../../api";
+import { createNotification } from '../../helpers';
+import { useForm, useSpinner, useUserContext } from "../../hooks";
+import { Spinner } from '..';
 
 const initialForm = {
   name: "",

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CreateQuestionOption } from "./CreateQuestionOption";
-import { useForm } from "../hooks";
+import { useForm } from "../../hooks";
 
 export const CreateQuestionCard = ({ questionIndex, setForm }) => {
   const { form, onInputChange } = useForm({ id: "", description: "" });

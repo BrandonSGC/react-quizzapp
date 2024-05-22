@@ -3,6 +3,7 @@ import { CreateQuestionCard, Modal, Spinner } from "../components/";
 import { useForm, useModal, useSpinner, useUserContext } from "../hooks";
 import { createQuiz } from "../api/";
 import { Link } from "react-router-dom";
+import uploadIcon from '../assets/icons/upload.svg'
 
 const initialForm = {
   name: "",
@@ -94,7 +95,7 @@ export const CreateQuizPage = () => {
             >
               <img
                 className="size-5"
-                src="/icons/upload.svg"
+                src={uploadIcon}
                 alt="upload icon"
               />
               <p>{form.image.name ? form.image.name : "Upload Image"}</p>

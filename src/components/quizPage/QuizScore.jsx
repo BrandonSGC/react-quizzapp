@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAnswersContext } from "../hooks";
-import { getQuizScore } from "../api";
+import { useAnswersContext } from "../../hooks";
+import { getQuizScore } from "../../api";
 import { Link, useParams } from "react-router-dom";
 
 export const QuizScore = () => {
@@ -10,7 +10,7 @@ export const QuizScore = () => {
     correctAnswers: 0,
     totalQuestions: 0,
   });
-  const { answers, setAnswers } = useAnswersContext();
+  const { answers } = useAnswersContext();
   const { id } = useParams();
   const { totalScore, correctAnswers, totalQuestions } = score;
   

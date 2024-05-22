@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CloseIcon } from "../assets";
+import { CloseIcon } from "../../assets";
 
 export const Modal = ({ isOpen, toggleModal, children }) => {
 

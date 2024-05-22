@@ -45,7 +45,7 @@ export const CheckAnswersPage = () => {
         </div>
 
         {/* List of checked answers Question #1 - correct / incorrect correct answers */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2">
           {questions?.map((question) => (
             <CheckQuestionCard key={question.question_id} {...question} />
           ))}

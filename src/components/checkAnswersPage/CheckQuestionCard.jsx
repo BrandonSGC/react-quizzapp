@@ -1,3 +1,6 @@
+import correctIcon from '../../assets/icons/correct.svg';
+import incorrectIcon from '../../assets/icons/incorrect.svg';
+
 export const CheckQuestionCard = ({
   description,
   is_correct,
@@ -6,20 +9,20 @@ export const CheckQuestionCard = ({
 }) => {
   return (
     <div
-      className={`p-4 text-white rounded-xl shadow ${
+      className={`p-3 text-white rounded-lg shadow ${
         is_correct ? "bg-green-500" : "bg-red-500"
       }`}
     >
       <div className="flex flex-col-reverse justify-between text-xl font-bold md:flex-row">
         <p className="mb-2 font-bold">{description}</p>
         <div
-          className={`p-1 px-3 rounded-2xl text-slate-700 text-base font-light flex justify-center gap-1 items-center ${
+          className={`p-1 px-3 rounded-lg text-slate-700 text-base font-light flex justify-center gap-1 items-center ${
             is_correct ? "bg-green-300" : "bg-red-300"
           }`}
         >
           <img
             className="size-5"
-            src={is_correct ? "/icons/correct.svg" : "/icons/incorrect.svg"}
+            src={is_correct ? correctIcon : incorrectIcon}
             alt="icon"
           />
           <p className="font-normal">{is_correct ? "Correct" : "Incorrect"}</p>

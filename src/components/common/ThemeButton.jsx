@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from "../assets/";
+import { MoonIcon, SunIcon } from "../../assets";
 
 export const ThemeButton = () => {
   const [darkMode, setDarkMode] = useState(() => {

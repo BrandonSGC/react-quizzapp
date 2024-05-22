@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../hooks";
-import { createNotification } from "../helpers";
+import { useUserContext } from "../../hooks";
+import { createNotification } from "../../helpers";
 
 export const CreateQuizButton = () => {
   const { isAuthenticated } = useUserContext();

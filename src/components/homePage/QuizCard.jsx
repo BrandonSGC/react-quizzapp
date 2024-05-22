@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { API } from "../index";
-import { DeleteIcon } from "../assets";
-import { useModal } from "../hooks";
-import { Modal } from "./Modal";
-import { deleteQuizById } from "../api";
+import { API } from "../../index";
+import { DeleteIcon } from "../../assets";
+import { useModal } from "../../hooks";
+import { Modal } from "../common";
+import { deleteQuizById } from "../../api";
 
 export const QuizCard = ({ id, image_url, name, user_id, setQuizzes }) => {
   const { isOpen, toggleModal } = useModal();
