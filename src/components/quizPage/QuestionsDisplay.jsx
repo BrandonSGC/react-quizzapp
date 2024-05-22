@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import {
   Container,
   OptionsList,
-  QuestionHeader,
   QuestionInfo,
   QuizNavigation,
 } from "..";
+import { QuizNameAndIcon } from '../common';
 
 export const QuestionsDisplay = ({ toggleModal, quiz }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
@@ -22,7 +22,7 @@ export const QuestionsDisplay = ({ toggleModal, quiz }) => {
 
   return (
     <Container className="grid gap-10">
-      <QuestionHeader image_url={image_url} name={name} />
+      <QuizNameAndIcon image_url={image_url} name={name} iconClassName="size-12" textClassName="text-4xl font-bold"/>
 
       <div className="grid md:gap-x-10 gap-y-5 md:grid-cols-2">
         <QuestionInfo

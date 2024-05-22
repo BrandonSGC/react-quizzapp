@@ -5,4 +5,3 @@ export * from './QuizScore';
 export * from './QuestionInfo';
 export * from './OptionsList';
 export * from './OptionCard';
-export * from './QuestionHeader';

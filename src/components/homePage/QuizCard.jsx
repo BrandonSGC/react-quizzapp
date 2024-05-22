@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { API } from "../../constants";
 import { DeleteIcon } from "../../assets";
 import { useModal } from "../../hooks";
-import { Modal } from "../common";
+import { Modal, QuizNameAndIcon } from "../common";
 import { deleteQuizById } from "../../api";
 
 export const QuizCard = ({ id, image_url, name, user_id, setQuizzes }) => {
@@ -23,8 +23,7 @@ export const QuizCard = ({ id, image_url, name, user_id, setQuizzes }) => {
           to={`quizzes/${id}`}
           className="flex items-center flex-grow gap-2"
         >
-          <img className="size-10" src={`${API}${image_url}`} alt="Quiz Icon" />
-          <p className="text-xl font-semibold">{name}</p>
+          <QuizNameAndIcon image_url={image_url} name={name} iconClassName="size-10" textClassName="text-xl font-medium"/>
         </Link>
         {user_id && (
           <DeleteIcon

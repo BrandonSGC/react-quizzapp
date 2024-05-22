@@ -1,7 +1,7 @@
 import correctIcon from '../../assets/icons/correct.svg';
 import incorrectIcon from '../../assets/icons/incorrect.svg';
 
-export const CheckQuestionCard = ({
+export const CheckedQuestionCard = ({
   description,
   is_correct,
   correct_answer,

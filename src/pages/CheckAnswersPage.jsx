@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { CheckQuestionCard } from "../components";
-import { useAnswersContext } from "../hooks";
 import { Link, useParams } from "react-router-dom";
+import { useAnswersContext } from "../hooks";
 import { getReviewedQuiz } from "../api";
-import { API } from '../constants'
+import {
+  CheckedQuestionsList,
+  Container,
+  QuizNameAndIcon,
+  Score,
+} from "../components";
 
 export const CheckAnswersPage = () => {
   const { id } = useParams();
@@ -28,28 +32,18 @@ export const CheckAnswersPage = () => {
   }, [answersIds]);
   return (
     <>
-      <div className="mycontainer">
-        {/* Quiz title*/}
-        <div className="flex justify-center gap-2 mb-5 item-center">
-          <img className="size-10" src={`${API}${image_url}`} alt="Quiz icon" />
-          <h2 className="text-3xl font-bold">{name}</h2>
+      <Container>
+        <div className="flex flex-col items-center gap-2">
+          <QuizNameAndIcon
+            image_url={image_url}
+            name={name}
+            iconClassName="size-10"
+            textClassName="text-4xl font-bold"
+          />
+          <Score score={score} />
         </div>
 
-        {/* Score */}
-        <div className="mb-5 text-center">
-          <p>Your answers</p>
-          <p>
-            <span className="font-medium text-green-500">{score?.correctAnswers}</span> /{" "}
-            <span>{score?.totalQuestions}</span> correct
-          </p>
-        </div>
-
-        {/* List of checked answers Question #1 - correct / incorrect correct answers */}
-        <div className="flex flex-col gap-2">
-          {questions?.map((question) => (
-            <CheckQuestionCard key={question.question_id} {...question} />
-          ))}
-        </div>
+        <CheckedQuestionsList questions={questions} />
 
         <Link
           className="block w-32 p-2 mx-auto my-10 font-medium text-center text-white bg-purple-500 rounded shadow hover:bg-purple-600"
@@ -57,7 +51,7 @@ export const CheckAnswersPage = () => {
         >
           Back to home
         </Link>
-      </div>
+      </Container>
     </>
   );
 };
