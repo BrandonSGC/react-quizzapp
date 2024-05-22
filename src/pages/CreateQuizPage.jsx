@@ -66,7 +66,7 @@ export const CreateQuizPage = () => {
         Create an awesome quiz in minutes!
       </h1>
 
-      <form onSubmit={onSubmit} className="" encType="multipart/form-data">
+      <form onSubmit={onSubmit}>
         <div className="flex flex-col items-end gap-2 md:flex-row">
           <div className="w-full md:w-[70%]">
             <label
