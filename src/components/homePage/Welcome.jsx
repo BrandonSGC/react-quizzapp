@@ -21,7 +21,7 @@ export const Welcome = () => {
   return (
     <>
       <section className="space-y-5">
-        <h1 className="text-6xl font-black text-purple-700 dark:text-purple-100 text-balance">
+        <h1 className="text-5xl font-black text-purple-700 md:text-6xl dark:text-purple-100 text-balance">
           Welcome to the QuizzApp
         </h1>
         <p className="text-xl text-slate-500 dark:text-slate-300">
