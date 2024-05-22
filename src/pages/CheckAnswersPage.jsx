@@ -3,7 +3,7 @@ import { CheckQuestionCard } from "../components";
 import { useAnswersContext } from "../hooks";
 import { Link, useParams } from "react-router-dom";
 import { getReviewedQuiz } from "../api";
-import { API } from '../'
+import { API } from '../constants'
 
 export const CheckAnswersPage = () => {
   const { id } = useParams();

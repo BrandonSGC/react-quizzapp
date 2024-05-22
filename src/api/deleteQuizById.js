@@ -1,4 +1,4 @@
-import { API } from '../';
+import { API } from '../constants';
 
 export const deleteQuizById = async (id) => {
   try {

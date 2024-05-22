@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { OptionsList, QuestionInfo, QuizNavigationButton } from "..";
-import { API } from '../..';
+import { API } from '../../constants';
 
 export const QuestionsDisplay = ({ toggleModal, quiz }) => {
   const [totalQuestions, setTotalQuestions] = useState(0);
