@@ -1,6 +1,8 @@
+import { API } from '../constants';
+
 export const createQuiz = async (quiz) => {
   try {
-    const url = `http://localhost:3000/api/quizzes/create`;
+    const url = `${API}/api/quizzes/create`;
     const formData = new FormData();
     
     formData.append("name", quiz.name);

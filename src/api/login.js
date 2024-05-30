@@ -1,6 +1,8 @@
+import { API } from '../constants';
+
 export const login = async (form) => {
   try {
-    const url = `http://localhost:3000/api/users/login`;
+    const url = `${API}/api/users/login`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

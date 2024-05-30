@@ -1,6 +1,8 @@
+import { API } from '../constants';
+
 export const getReviewedQuiz = async (quizId, answers) => {
   try {
-    const url = `http://localhost:3000/api/quizzes/${quizId}/answers`;
+    const url = `${API}/api/quizzes/${quizId}/answers`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

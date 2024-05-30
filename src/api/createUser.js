@@ -1,6 +1,8 @@
+import { API } from '../constants';
+
 export const createUser = async (user) => {
   try {
-    const url = `http://localhost:3000/api/users`;
+    const url = `${API}/api/users`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

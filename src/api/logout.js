@@ -1,6 +1,8 @@
+import { API } from '../constants';
+
 export const logout = async () => {
   try {
-    const url = `http://localhost:3000/api/users/logout`;
+    const url = `${API}/api/users/logout`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
