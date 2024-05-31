@@ -1,4 +1,3 @@
-import quizIlustration from '../../assets/images/quiz_ilustration.svg';
 export const AuthPageTemplate = ({children}) => {
   return (
     <div className="grid w-screen h-[calc(100vh-80px)] place-items-center">
@@ -6,7 +5,7 @@ export const AuthPageTemplate = ({children}) => {
         <div className="flex-col items-center justify-center hidden gap-4 p-5 text-white bg-purple-500 md:flex">
           <img
             className="w-[60%]"
-            src={quizIlustration}
+            src='/quiz_ilustration.svg'
             alt="QuizzApp Logo"
           />
           <h1 className="text-4xl font-black text-center">

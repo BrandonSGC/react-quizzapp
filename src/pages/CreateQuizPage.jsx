@@ -147,7 +147,7 @@ export const CreateQuizPage = () => {
             <div className="flex flex-col items-center justify-center p-6 w-96">
               <img
                 className="max-w-[150px]"
-                src="/img/quiz_ilustration.svg"
+                src="/quiz_ilustration.svg"
                 alt=""
               />
               <h1 className="text-3xl font-black text-center text-purple-500">
